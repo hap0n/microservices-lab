@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-fields
+spec:
+  selector:
+    app: service-fields
+  type: NodePort
+  ports:
+    - name: http
+      port: 8081
+      nodePort: 31001
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-fields
+spec:
+  selector:
+    matchLabels:
+      app: service-fields
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-fields
+    spec:
+      containers:
+        - name: server
+          image: hap0n/service-fields:latest
+          ports:
+            - name: http
+              containerPort: 8082
+
+---

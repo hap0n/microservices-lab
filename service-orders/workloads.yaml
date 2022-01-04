@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-orders
+spec:
+  selector:
+    app: service-orders
+  type: NodePort
+  ports:
+    - name: http
+      port: 8082
+      nodePort: 31002
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-orders
+spec:
+  selector:
+    matchLabels:
+      app: service-orders
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-orders
+    spec:
+      containers:
+        - name: server
+          image: hap0n/service-orders:latest
+          ports:
+            - name: http
+              containerPort: 8082
+
+---
