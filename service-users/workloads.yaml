@@ -8,8 +8,8 @@ spec:
   type: NodePort
   ports:
     - name: http
-      port: 8083
-      nodePort: 31003
+      port: 8082
+      nodePort: 31002
 
 ---
 

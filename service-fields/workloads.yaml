@@ -8,8 +8,8 @@ spec:
   type: NodePort
   ports:
     - name: http
-      port: 8081
-      nodePort: 31001
+      port: 8080
+      nodePort: 31000
 
 ---
 
@@ -32,6 +32,6 @@ spec:
           image: hap0n/service-fields:latest
           ports:
             - name: http
-              containerPort: 8082
+              containerPort: 8080
 
 ---
